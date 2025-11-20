@@ -1,0 +1,32 @@
+# =========================================
+# 📌 ZONAS PRIVADAS — NO SUBIR A GITHUB
+# =========================================
+
+# Archivos críticos de configuración
+config/
+private/
+src/controller
+src/model
+
+# Ignorar SQL sensibles excepto los de /database/
+
+!database/*.sql
+
+# =========================================
+# 🗄 LOGS / CACHES / TEMPORALES
+# =========================================
+
+*.log
+*.tmp
+*.cache
+*.bak
+*.old
+
+# =========================================
+# 📂 EDITORES / SISTEMAS OPERATIVOS
+# =========================================
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
