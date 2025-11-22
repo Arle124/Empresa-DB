@@ -26,8 +26,12 @@ if (!isset($_SESSION['usuario'])) {
     <?php if ($_SESSION['rol'] === 'admin'): ?>
         <h2>Panel de Administración</h2>
         <p>Solo los administradores pueden ver esto.</p>
-        <a href="src/view/usuarios_crear.php">Crear usuarios</a><br>
-        <a href="src/view/usuarios_listar.php">Listar usuarios</a>
+
+        <button onclick="location.href='src/view/usuarios_crear.php'">Crear usuarios</button><br>
+        <button onclick="location.href='src/view/usuarios_listar.php'">Listar usuarios</button><br>
+        <button onclick="location.href='src/view/vehiculos_crear.php'">Crear vehículos</button><br>
+        <button onclick="location.href='src/view/vehiculos_listar.php'">Listar vehículos</button><br>
+        
     <?php endif; ?>
 
     <div id = "logout-btn">

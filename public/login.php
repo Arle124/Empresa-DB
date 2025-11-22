@@ -4,48 +4,50 @@ require_once "../config/conexion.php";
 
 $error = "";
 
-// Si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = trim($_POST['usuario']);
     $clave = trim($_POST['clave']);
 
-    // Crear conexión usando tu clase
-    $db = new Database();
-    $conn = $db->connect();
+    // Validación simple del usuario
+    if (!preg_match('/^[a-zA-Z0-9_]+$/', $usuario)) {
+        $error = "Usuario inválido.";
+    } else {
+        $db = new Database();
+        $conn = $db->connect();
 
-    try {
-        // Llamar al SP
-        $stmt = $conn->prepare("CALL sp_usuarios_login(:usuario)");
-        $stmt->bindParam(':usuario', $usuario);
-        $stmt->execute();
+        try {
+            $stmt = $conn->prepare("CALL sp_usuarios_login(:usuario)");
+            $stmt->bindParam(':usuario', $usuario);
+            $stmt->execute();
+            
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($user) {
+                if (password_verify($clave, $user['clave'])) {
+                    if ($user['estado'] === 'activo') {
 
-        if ($user) {
-            // Verificar contraseña
-            if (password_verify($clave, $user['clave'])) {
-                // Verificar estado
-                if ($user['estado'] === 'activo') {
-                    // Guardar datos en sesión
-                    $_SESSION['id'] = $user['id'];
-                    $_SESSION['usuario'] = $user['usuario'];
-                    $_SESSION['nombre'] = $user['nombre'];
-                    $_SESSION['rol'] = $user['rol'];
+                        session_regenerate_id(true);
 
-                    // Redirigir al dashboard
-                    header("Location: ../index.php");
-                    exit();
+                        $_SESSION['id'] = $user['id'];
+                        $_SESSION['usuario'] = $user['usuario'];
+                        $_SESSION['nombre'] = $user['nombre'];
+                        $_SESSION['rol'] = $user['rol'];
+
+                        header("Location: ../index.php");
+                        exit;
+                    } else {
+                        $error = "Tu usuario está bloqueado.";
+                    }
                 } else {
-                    $error = "Tu usuario está bloqueado.";
+                    $error = "Contraseña incorrecta.";
                 }
             } else {
-                $error = "Contraseña incorrecta.";
+                $error = "Usuario no encontrado.";
             }
-        } else {
-            $error = "Usuario no encontrado.";
+        } catch (PDOException $e) {
+            $error = "Error en la base de datos: " . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        $error = "Error en la base de datos: " . $e->getMessage();
     }
 }
 ?>
