@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once "../../config/conexion.php";
+require_once "../../../config/conexion.php";
 require_once "../controller/UsuarioController.php";
 
 // Verificar sesión
 if (!isset($_SESSION['rol'])) {
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
 
@@ -40,11 +40,12 @@ $usuarios = $controller->listarUsuarios();
 <head>
     <meta charset="UTF-8">
     <title>Listar Usuarios</title>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
 </head>
 <body>
     <h1>Listado de Usuarios</h1>
 
-    <button onclick="location.href='../../index.php'">Regresar</button>
+    <button onclick="location.href='../../../index.php'">Regresar</button>
 
     <table border="1" style="margin-top: 15px;">
     <tr>

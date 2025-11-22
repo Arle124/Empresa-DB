@@ -5,8 +5,19 @@
 # Archivos críticos de configuración
 config/
 private/
-src/controller
-src/model
+
+# Parte del código fuente que no debe ser pública por seguridad
+# Trabajadores
+src/trabajadores/model
+src/trabajadores/controller
+
+# Usuarios
+src/usuarios/model
+src/usuarios/controller
+
+# Vehículos
+src/vehiculos/model
+src/vehiculos/controller
 
 # Ignorar SQL sensibles excepto los de /database/
 

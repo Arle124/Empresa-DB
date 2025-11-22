@@ -1,0 +1,110 @@
+/* ==== Reset suave ==== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ==== Estilos generales ==== */
+body {
+    background: #f2f2f7;
+    color: #333;
+    padding: 20px;
+}
+
+/* ==== Contenedores ==== */
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ==== Títulos ==== */
+h1, h2 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* ==== Formularios ==== */
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+form input:focus, form select:focus {
+    border-color: #0078ff;
+    outline: none;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #0078ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #005fcc;
+}
+
+/* ==== Tabla ==== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background: #0078ff;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tr:hover {
+    background: #f5faff;
+}
+
+/* ==== Mensajes ==== */
+.error {
+    background: #ffe0e0;
+    padding: 10px;
+    border-left: 4px solid #ff5c5c;
+    margin-top: 15px;
+    border-radius: 5px;
+    color: #a70000;
+}
+
+.success {
+    background: #e0ffe6;
+    padding: 10px;
+    border-left: 4px solid #24c46b;
+    margin-top: 15px;
+    border-radius: 5px;
+    color: #0d8a41;
+}
